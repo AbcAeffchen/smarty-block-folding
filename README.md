@@ -1,8 +1,8 @@
 # Smarty Block Folding
 
-[![Build](https://github.com/AbcAeffchen/smarty-block-folding/workflows/Build/badge.svg)](#)
-[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.abcaeffchen.smartyblockfolding.svg)](https://plugins.jetbrains.com/plugin/com.github.abcaeffchen.smartyblockfolding)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.abcaeffchen.smartyblockfolding.svg)](https://plugins.jetbrains.com/plugin/com.github.abcaeffchen.smartyblockfolding)
+![Build](https://github.com/AbcAeffchen/smarty-block-folding/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.abcaeffchen.smartyblockfolding.svg)](https://plugins.jetbrains.com/plugin/21409-smarty-block-folding)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.abcaeffchen.smartyblockfolding.svg)](https://plugins.jetbrains.com/plugin/21409-smarty-block-folding)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
