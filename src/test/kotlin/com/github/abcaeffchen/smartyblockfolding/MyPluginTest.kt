@@ -34,7 +34,7 @@ class MyPluginTest : BasePlatformTestCase() {
                 println(", ${it.textRange.endOffset}")
                 FoldingDescriptor(
                     it.node,
-                    TextRange(openingEnd + 1, closingBegin - 1)
+                    TextRange(openingEnd - 1, it.textRange.endOffset - 1)
                 )
             }
     }
