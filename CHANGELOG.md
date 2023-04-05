@@ -1,7 +1,8 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# smarty-block-folding Changelog
+# Smarty Block Folding Changelog
 
-## [Unreleased]
-### Added
+## [1.0.0]
+
+- Added first code version.
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
