@@ -4,5 +4,8 @@
 
 ## [Unreleased]
 
-- Added first code version.
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+## [1.0.1] - 2023-04-05
+Add Icons.
+
+[Unreleased]: https://github.com/AbcAeffchen/smarty-block-folding/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/AbcAeffchen/smarty-block-folding/commits/v1.0.1
