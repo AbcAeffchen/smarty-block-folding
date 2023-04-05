@@ -1,39 +1,43 @@
 package com.github.abcaeffchen.smartyblockfolding
 
-import com.intellij.ide.highlighter.XmlFileType
-import com.intellij.openapi.components.service
-import com.intellij.psi.xml.XmlFile
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.util.childrenOfType
+import com.intellij.psi.util.elementType
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
-import com.intellij.util.PsiErrorElementUtil
-import com.github.abcaeffchen.smartyblockfolding.services.MyProjectService
+import com.jetbrains.smarty.SmartyFile
+import com.jetbrains.smarty.SmartyFileType
+import com.jetbrains.smarty.lang.SmartyTokenTypes
+import com.jetbrains.smarty.lang.psi.SmartyTag
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
 
-    fun testXMLFile() {
-        val psiFile = myFixture.configureByText(XmlFileType.INSTANCE, "<foo>bar</foo>")
-        val xmlFile = assertInstanceOf(psiFile, XmlFile::class.java)
+    fun testSmartyFile() {
+        val psiFile = myFixture.configureByText(SmartyFileType.INSTANCE, "{foo}bar{baz}bla1{bla2 name='woot'}{/baz}{/foo}{test}{best}{/best}")
+        assertInstanceOf(psiFile, SmartyFile::class.java)
 
-        assertFalse(PsiErrorElementUtil.hasErrors(project, xmlFile.virtualFile))
-
-        assertNotNull(xmlFile.rootTag)
-
-        xmlFile.rootTag?.let {
-            assertEquals("foo", it.name)
-            assertEquals("bar", it.value.text)
-        }
+        val elements = PsiTreeUtil.findChildrenOfType(psiFile, SmartyTag::class.java)
+            // find block commands
+            .filter {
+                it.childrenOfType<PsiElement>().filter { a -> a.elementType == SmartyTokenTypes.END_TAG_START }.size == 1
+            }
+            .map {
+                val children = it.childrenOfType<PsiElement>()
+                val openingEnd = children.find { b -> b.elementType == SmartyTokenTypes.TAG_END }?.textRange?.endOffset ?: 0
+                val closingBegin = children.find { b -> b.elementType == SmartyTokenTypes.END_TAG_START }?.textRange?.endOffset ?: 0
+                print(openingEnd)
+                print(", $closingBegin")
+                println(", ${it.textRange.endOffset}")
+                FoldingDescriptor(
+                    it.node,
+                    TextRange(openingEnd + 1, closingBegin - 1)
+                )
+            }
     }
 
-    fun testRename() {
-        myFixture.testRename("foo.xml", "foo_after.xml", "a2")
-    }
-
-    fun testProjectService() {
-        val projectService = project.service<MyProjectService>()
-
-        assertNotSame(projectService.getRandomNumber(), projectService.getRandomNumber())
-    }
-
-    override fun getTestDataPath() = "src/test/testData/rename"
+    override fun getTestDataPath() = "src/test/testData"
 }

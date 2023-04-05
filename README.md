@@ -1,4 +1,4 @@
-# smarty-block-folding
+# Smarty Block Folding
 
 ![Build](https://github.com/AbcAeffchen/smarty-block-folding/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
@@ -17,11 +17,10 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+**Smarty Block Folding** adds code folding for all smarty blocks of the form `{foo}...{/foo}` for built-in blocks like
+`{block}`, `{function}`, `{strip}`, `{capture}`, `{nocache}`, `{setfilter}`, `{while}`, as well as all user defined blocks.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
-
-To keep everything working, do not remove `<!-- ... -->` sections. 
+This Plugin is meant to be a fix for this [issue](https://youtrack.jetbrains.com/issue/WI-71365).
 <!-- Plugin description end -->
 
 ## Installation
